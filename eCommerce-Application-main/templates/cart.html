@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <a href="/">Back to Store</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="cartItems">
+            <!-- Cart items populated by JS -->
+        </tbody>
+    </table>
+    <p id="grandTotal">Grand Total: $0.00</p>
+    <button onclick="checkout()">Checkout</button>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function renderCart() {
+            const tbody = document.getElementById('cartItems');
+            tbody.innerHTML = '';
+            let grandTotal = 0;
+            cart.forEach(item => {
+                let total = item.price * item.quantity;
+                grandTotal += total;
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>$${item.price}</td>
+                        <td>${item.quantity}</td>
+                        <td>$${total.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+            document.getElementById('grandTotal').innerText = 'Grand Total: $' + grandTotal.toFixed(2);
+        }
+
+        function checkout() {
+            alert('Checkout feature coming soon!');
+        }
+
+        renderCart();
+    </script>
+</body>
+</html>

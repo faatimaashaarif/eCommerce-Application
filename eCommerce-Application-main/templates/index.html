@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>E-Commerce Store</title>
+    <style>
+        body {font-family: Arial;}
+        .product {border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; width: 200px;}
+    </style>
+</head>
+<body>
+    <h1>Online Store</h1>
+    <a href="/admin">Admin Panel</a>
+    <div>
+        {% for p in products %}
+        <div class="product">
+            <h3>{{ p.name }}</h3>
+            <p>{{ p.description }}</p>
+            <p>Price: ${{ p.price }}</p>
+            <p>Stock: {{ p.stock }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
